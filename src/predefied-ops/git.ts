@@ -88,4 +88,24 @@ export default abstract class GitOperations {
     public static setUpstreamSync(remoteBranch: string, remote: string = "origin"): boolean {
         return ScriptOperations.executeSync("git", "branch", `--set-upstream-to=${remote}/${remoteBranch}`);
     }
+
+    public static clone(url: string, path?: string): Promise<boolean> {
+        const params: string[] = ["clone", url];
+
+        if (path) {
+            params.push(path);
+        }
+
+        return ScriptOperations.execute("git", ...params);
+    }
+
+    public static cloneSync(url: string, path?: string): boolean {
+        const params: string[] = ["clone", url];
+
+        if (path) {
+            params.push(path);
+        }
+
+        return ScriptOperations.executeSync("git", ...params);
+    }
 }
