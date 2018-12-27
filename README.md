@@ -6,7 +6,7 @@ Get dandy with an easy-to-use automated workflow library!
 
 ## Usage
 
-Automata comes in handy for pretty much any requirement for automation. Below are you examples which are designed help you get started using this library.
+Automata comes in handy for pretty much any requirement for automation. Below are some examples which are designed help you get started using this library.
 
 Although most examples use pre-defined operations, the real magic to using this library is when you make self-contained operations and implement them, allowing for a dynamic and flexible usage of tasks.
 
