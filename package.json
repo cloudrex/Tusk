@@ -1,5 +1,5 @@
 {
-    "name": "automata",
+    "name": "@atlas/automata",
     "version": "1.0.0-alpha.0",
     "description": "Automation library",
     "main": "dist/index.js",
