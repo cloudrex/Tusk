@@ -84,6 +84,7 @@ export class Coordinator {
     protected webhooks: Server[];
     protected retryTimes: number;
     protected fallbackCallback?: Action;
+    protected timeoutTime: number;
 
     public constructor(...operations: Operation[]) {
         this.operations = operations !== undefined && Array.isArray(operations) ? operations.map((op: Operation): ISavedOp => {
@@ -96,6 +97,7 @@ export class Coordinator {
         this.isRunning = false;
         this.webhooks = [];
         this.retryTimes = 0;
+        this.timeoutTime = 30_000;
     }
 
     public retry(times: number): this {
@@ -127,6 +129,17 @@ export class Coordinator {
 
     public fallback(callback: Action): this {
         this.fallbackCallback = callback;
+
+        return this;
+    }
+
+    public timeout(time: number): this {
+        if (typeof time !== "number") {
+            throw new Error("Expecting timeout time to be a number");
+        }
+        else if (time <= 0) {
+            throw new Error("Expecting timeout time to be positive");
+        }
 
         return this;
     }
