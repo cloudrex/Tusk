@@ -8,7 +8,7 @@ Get dandy with an easy-to-use automated workflow library!
 
 Automata comes in handy for pretty much any requirement for automation. Below are you examples which are designed help you get started using this library.
 
-Althought most examples use pre-defined operations, the real magic to using this library is when you make self-contained operations and implement them, allowing for a dynamic and flexible usage of tasks.
+Although most examples use pre-defined operations, the real magic to using this library is when you make self-contained operations and implement them, allowing for a dynamic and flexible usage of tasks.
 
 ### TypeScript project build script:
 ```js
