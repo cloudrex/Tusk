@@ -59,7 +59,7 @@ export enum GithubEvent {
     Watch = "watch"
 }
 
-export type Callback = () => void;
+export type Action<T = void> = () => T;
 
 export type GithubWebhookCallback<T> = (type: GithubEvent, body: T) => void;
 
@@ -83,7 +83,7 @@ export class Coordinator {
     protected isRunning: boolean;
     protected webhooks: Server[];
     protected retryTimes: number;
-    protected fallbackCallback?: Callback;
+    protected fallbackCallback?: Action;
 
     public constructor(...operations: Operation[]) {
         this.operations = operations !== undefined && Array.isArray(operations) ? operations.map((op: Operation): ISavedOp => {
@@ -125,7 +125,7 @@ export class Coordinator {
         return this.isRunning;
     }
 
-    public fallback(callback: Callback): this {
+    public fallback(callback: Action): this {
         this.fallbackCallback = callback;
 
         return this;
@@ -177,7 +177,7 @@ export class Coordinator {
                 }
 
                 if (this.fallbackCallback) {
-                    const fallback: Callback = this.fallbackCallback;
+                    const fallback: Action = this.fallbackCallback;
 
                     this.fallbackCallback = undefined;
                     fallback();
