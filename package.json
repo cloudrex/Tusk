@@ -1,6 +1,6 @@
 {
     "name": "@atlas/automata",
-    "version": "1.0.0-alpha.1",
+    "version": "1.0.0-alpha.2",
     "description": "Automation library",
     "main": "dist/index.js",
     "scripts": {
