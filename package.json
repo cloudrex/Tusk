@@ -6,6 +6,7 @@
     "scripts": {
         "build": "tsc",
         "prepare": "npm run build",
+        "prepublish": "npm test",
         "test": "npm run build && mocha dist/test/tests.js"
     },
     "repository": {
