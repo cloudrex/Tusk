@@ -3,10 +3,10 @@ import {exec, execSync} from "child_process";
 export default abstract class ScriptOperations {
     public static execute(base: string, params: string[], output: boolean = false): Promise<boolean> {
         return new Promise((resolve) => {
-            const joinParams: string = params !== undefined && Array.isArray(params) ? params.join(" ") : "";
+            const joinParams: string = params !== undefined && Array.isArray(params) && params.length > 0 ? params.join(" ") : "";
 
             exec(`${base} ${joinParams}`.trim(), (error: Error | null, out: string) => {
-                if (output) {
+                if (output && out) {
                     console.log(out);
                 }
 
@@ -23,10 +23,10 @@ export default abstract class ScriptOperations {
 
     public static executeSync(base: string, params: string[], output: boolean = false): boolean {
         try {
-            const joinParams: string = params !== undefined && Array.isArray(params) ? params.join(" ") : "";
+            const joinParams: string = params !== undefined && Array.isArray(params) && params.length > 0 ? params.join(" ") : "";
             const out: string = execSync(`${base} ${joinParams}`.trim()).toString();
 
-            if (output) {
+            if (output && out) {
                 console.log(out);
             }
 
