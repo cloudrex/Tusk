@@ -111,6 +111,10 @@ export class Coordinator {
     }
 
     public then(op: Operation, regardless: boolean = false): this {
+        if (typeof op !== "function") {
+            throw new Error("Expecting operation to be a function");
+        }
+
         if (this.isRunning) {
             throw new Error("Cannot append operation while running");
         }
