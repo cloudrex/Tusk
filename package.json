@@ -29,7 +29,8 @@
         "@types/node": "^10.12.18",
         "@types/rimraf": "^2.0.2",
         "chai": "^4.2.0",
-        "mocha": "^5.2.0"
+        "mocha": "^5.2.0",
+        "typescript": "^3.2.2"
     },
     "dependencies": {
         "body-parser": "^1.18.3",

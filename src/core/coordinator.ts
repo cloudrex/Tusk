@@ -145,6 +145,10 @@ export class Coordinator implements ICoordinator {
     }
 
     public fallback(callback: Action): this {
+        if (typeof callback !== "function") {
+            throw new Error("Expecting callback to be a function");
+        }
+        
         this.fallbackCallback = callback;
 
         return this;
