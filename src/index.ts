@@ -1,4 +1,4 @@
-import {Operation, ISavedOp, CoordinatorState, GithubEvent, Action, GithubWebhookCallback, ProgressCallback, ITaskResult, Coordinator, ICoordinator} from "./coordinator";
+import {Operation, ISavedOp, CoordinatorState, GithubEvent, Action, GithubWebhookCallback, ProgressCallback, ITaskResult, Coordinator, ICoordinator} from "./core/coordinator";
 import FileSystemOperations from "./predefied-ops/file-system";
 import GitOperations from "./predefied-ops/git";
 import ScriptOperations from "./predefied-ops/scripts";
