@@ -2,14 +2,14 @@ import express from "express";
 import bodyParser = require("body-parser");
 import crypto from "crypto";
 import {Server} from "http";
-import {performance} from "perf_hooks";
+import TaskRunner, {IOperationResult} from "./task-runner";
 
-type PromiseOr<T> = Promise<T> | T;
+export type PromiseOr<T> = Promise<T> | T;
 
 export type Operation = () => PromiseOr<boolean> | PromiseOr<void>;
 
 export interface ISavedOp {
-    readonly op: Operation;
+    readonly operation: Operation;
     readonly regardless: boolean;
 }
 
@@ -67,7 +67,7 @@ export type WebhookCallback<T> = (body: T) => void;
 
 export type ProgressCallback = (current: number, left: number, total: number, percentage: number) => void;
 
-export interface ICoordinatorRunResult {
+export interface ITaskResult {
     readonly state: CoordinatorState;
     readonly operations: number;
     readonly operationsCompleted: number;
@@ -75,8 +75,21 @@ export interface ICoordinatorRunResult {
     readonly averageTime: number;
 }
 
+export interface ICoordinator {
+    retry(times: number): this;
+    then(operation: Operation, regardless: boolean): this;
+    fallback(callback: Action): this;
+    timeout(time: number): this;
+    run(): PromiseOr<ITaskResult>;
+    clear(): this;
+    webhook<T extends object>(callback: WebhookCallback<T>, secret?: string, port?: number): number;
+    clearWebhooks(): this;
+
+    readonly running: boolean;
+}
+
 // TODO: Implement retry functionality
-export class Coordinator {
+export class Coordinator implements ICoordinator {
     public static webhookPort: number = 52671;
 
     protected operations: ISavedOp[];
@@ -89,7 +102,7 @@ export class Coordinator {
     public constructor(...operations: Operation[]) {
         this.operations = operations !== undefined && Array.isArray(operations) ? operations.map((op: Operation): ISavedOp => {
             return {
-                op,
+                operation: op,
                 regardless: false
             };
         }) : [];
@@ -110,8 +123,8 @@ export class Coordinator {
         return this;
     }
 
-    public then(op: Operation, regardless: boolean = false): this {
-        if (typeof op !== "function") {
+    public then(operation: Operation, regardless: boolean = false): this {
+        if (typeof operation !== "function") {
             throw new Error("Expecting operation to be a function");
         }
 
@@ -120,7 +133,7 @@ export class Coordinator {
         }
 
         this.operations.push({
-            op,
+            operation,
             regardless
         });
 
@@ -149,7 +162,7 @@ export class Coordinator {
     }
 
     // TOOD: Better report of why failed/completed
-    public async run(callback?: ProgressCallback, clear: boolean = true): Promise<ICoordinatorRunResult> {
+    public async run(callback?: ProgressCallback, clear: boolean = true): Promise<ITaskResult> {
         if (callback !== undefined && typeof callback !== "function") {
             throw new Error("Expecting callback to be a function");
         }
@@ -163,7 +176,7 @@ export class Coordinator {
 
         const totalLength: number = this.operations.length;
 
-        const pending: ICoordinatorRunResult = {
+        const pending: ITaskResult = {
             operations: totalLength,
             time: 0,
             averageTime: 0,
@@ -176,17 +189,9 @@ export class Coordinator {
                 callback(completed + 1, totalLength - (completed + 1), totalLength, Math.round(completed / totalLength * 100));
             }
 
-            const start: number = performance.now();
+            const result: IOperationResult = await TaskRunner.run(savedOp);
 
-            let result: PromiseOr<boolean> | PromiseOr<void> = savedOp.regardless ? true : savedOp.op();
-            let time: number = Math.round(performance.now() - start);
-
-            if (result instanceof Promise) {
-                result = await result;
-                time = Math.round(performance.now() - start);
-            }
-
-            if (result === false) {
+            if (result.value === false) {
                 this.isRunning = false;
 
                 if (clear) {
@@ -210,7 +215,7 @@ export class Coordinator {
             }
 
             // TODO: Read-only hotfix
-            (pending.time as any) += time;
+            (pending.time as any) += result.time;
             completed++;
         }
 
