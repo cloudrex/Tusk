@@ -36,4 +36,24 @@ describe("Coordinator", () => {
             assert.throws(() => coordinator.then({} as any));
         });
     });
+
+    describe("timeout()", () => {
+        it("should set timeout", () => {
+            coordinator.timeout(1_500);
+
+            expect((coordinator as any).timeoutTime).to.be.a("number").and.to.equal(1_500);
+        });
+
+        it("should throw on invalid parameters", () => {
+            assert.throws(() => coordinator.timeout(undefined as any));
+            assert.throws(() => coordinator.timeout(null as any));
+            assert.throws(() => coordinator.timeout(true as any));
+            assert.throws(() => coordinator.timeout(0));
+            assert.throws(() => coordinator.timeout(-1));
+            assert.throws(() => coordinator.timeout(-100));
+            assert.throws(() => coordinator.timeout(false as any));
+            assert.throws(() => coordinator.timeout([] as any));
+            assert.throws(() => coordinator.timeout({} as any));
+        });
+    });
 });

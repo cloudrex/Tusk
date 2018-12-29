@@ -158,6 +158,8 @@ export class Coordinator implements ICoordinator {
             throw new Error("Expecting timeout time to be positive");
         }
 
+        this.timeoutTime = time;
+
         return this;
     }
 
