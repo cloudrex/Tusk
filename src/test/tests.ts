@@ -14,6 +14,10 @@ describe("Coordinator", () => {
         expect((coordinator as any).operations).to.be.an("array").and.to.have.length(0);
     });
 
+    it("should have no initial webhooks", () => {
+        expect((coordinator as any).webhooks).to.be.an("array").and.to.have.length(0);
+    });
+
     it("should not be running", () => {
         expect(coordinator.running).to.be.a("boolean").and.to.equal(false);
     });
