@@ -1,12 +1,13 @@
 // Unit testing for Automata
 import {expect, assert} from "chai";
-import {Coordinator} from "..";
+import {Coordinator, Operation} from "..";
 
 // Test globals
 const globalAny: any = global;
 const describe: any = globalAny.describe;
 const it: any = globalAny.it;
 
+const action: Operation = () => {};
 const coordinator: Coordinator = new Coordinator();
 
 describe("Coordinator", () => {
@@ -30,6 +31,7 @@ describe("Coordinator", () => {
         });
 
         it("should throw on invalid parameters", () => {
+            // Operation parameter
             assert.throws(() => coordinator.then(undefined as any));
             assert.throws(() => coordinator.then(null as any));
             assert.throws(() => coordinator.then(1 as any));
@@ -38,6 +40,14 @@ describe("Coordinator", () => {
             assert.throws(() => coordinator.then(false as any));
             assert.throws(() => coordinator.then([] as any));
             assert.throws(() => coordinator.then({} as any));
+
+            // Regardless parameter
+            assert.throws(() => coordinator.then(action, null as any));
+            assert.throws(() => coordinator.then(action, 1 as any));
+            assert.throws(() => coordinator.then(action, 0 as any));
+            assert.throws(() => coordinator.then(action, [] as any));
+            assert.throws(() => coordinator.then(action, {} as any));
+            assert.throws(() => coordinator.then(action, action as any));
         });
     });
 

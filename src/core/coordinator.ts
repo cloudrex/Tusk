@@ -127,6 +127,9 @@ export class Coordinator implements ICoordinator {
         if (typeof operation !== "function") {
             throw new Error("Expecting operation to be a function");
         }
+        else if (typeof regardless !== "boolean") {
+            throw new Error("Expecting the regardless parameter to be a boolean");
+        }
 
         if (this.isRunning) {
             throw new Error("Cannot append operation while running");
