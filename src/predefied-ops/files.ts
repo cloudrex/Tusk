@@ -2,7 +2,7 @@ import fs from "fs";
 import rimraf = require("rimraf");
 import {execFile, execFileSync} from "child_process";
 
-export default abstract class FileSystemOperations {
+export default abstract class FileOps {
     public static moveSync(from: string, to: string): boolean {
         try {
             fs.renameSync(from, to);

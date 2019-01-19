@@ -3,72 +3,11 @@ import bodyParser = require("body-parser");
 import crypto from "crypto";
 import {Server} from "http";
 import TaskRunner, {IOperationResult} from "./task-runner";
-
-export type PromiseOr<T> = Promise<T> | T;
-
-export type Operation = () => PromiseOr<boolean> | PromiseOr<void>;
-
-export interface ISavedOp {
-    readonly operation: Operation;
-    readonly regardless: boolean;
-}
-
-export enum CoordinatorState {
-    OK,
-    Failed
-}
-
-export enum GithubEvent {
-    CheckRun = "check_run",
-    CheckSuite = "check_suite",
-    CommitComment = "commit_comment",
-    BranchOrTagCreation = "create",
-    BranchOrTagDeletion = "delete",
-    Deployment = "deployment",
-    DeploymentStatus = "deployment_status",
-    Fork = "fork",
-    GithubAppAuthorization = "github_app_authorization",
-    Wiki = "gollum",
-    AppInstallation = "installation",
-    RepositoryAppInstallation = "installation_repositories",
-    IssueComment = "issue_comment",
-    Issue = "issues",
-    Label = "label",
-    MarketplacePurchase = "marketplace_purchase",
-    Member = "member",
-    Membership = "membership",
-    Milestone = "milestone",
-    Organization = "organization",
-    OrganizationBlock = "org_block",
-    PageBuild = "page_build",
-    ProjectCard = "project_card",
-    Project = "project",
-    Public = "public",
-    PullRequestReviewComment = "pull_request_review_comment",
-    PullRequestReview = "pull_request_review",
-    PullRequest = "pull_request",
-    Push = "push",
-    Repository = "repository",
-    RepositoryImport = "repository_import",
-    RepositoryVulnerabilityAlert = "repository_vulnerability_alert",
-    Release = "release",
-    SecurityAdvisory = "security_advisory",
-    Status = "status",
-    Team = "team",
-    TeamRepositoryAdd = "team_add",
-    Watch = "watch"
-}
-
-export type Action<T = void> = () => T;
-
-export type GithubWebhookCallback<T> = (type: GithubEvent, body: T) => void;
-
-export type WebhookCallback<T> = (body: T) => void;
-
-export type ProgressCallback = (current: number, left: number, total: number, percentage: number) => void;
+import GithubEvent from "./github-event";
+import {WebhookCallback, Action, Operation, PromiseOr, ProgressCallback, GithubWebhookCallback, RunState, ISavedOp} from "./helpers";
 
 export interface ITaskResult {
-    readonly state: CoordinatorState;
+    readonly state: RunState;
     readonly operations: number;
     readonly operationsCompleted: number;
     readonly time: number;
@@ -151,7 +90,7 @@ export class Coordinator implements ICoordinator {
         if (typeof callback !== "function") {
             throw new Error("Expecting callback to be a function");
         }
-        
+
         this.fallbackCallback = callback;
 
         return this;
@@ -190,7 +129,7 @@ export class Coordinator implements ICoordinator {
             time: 0,
             averageTime: 0,
             operationsCompleted: 0,
-            state: CoordinatorState.Failed
+            state: RunState.Failed
         };
 
         for (const savedOp of this.operations) {
@@ -217,7 +156,7 @@ export class Coordinator implements ICoordinator {
                 // TODO: Should return final fallback result (if any fallback was set)
                 return {
                     ...pending,
-                    state: CoordinatorState.Failed,
+                    state: RunState.Failed,
                     operationsCompleted: completed,
                     averageTime: Math.round(pending.time / completed)
                 };
@@ -236,7 +175,7 @@ export class Coordinator implements ICoordinator {
 
         return {
             ...pending,
-            state: CoordinatorState.OK,
+            state: RunState.OK,
             operationsCompleted: completed,
             averageTime: Math.round(pending.time / completed)
         };

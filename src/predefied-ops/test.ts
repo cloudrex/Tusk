@@ -1,4 +1,4 @@
-export default abstract class TestOperations {
+export default abstract class TestOps {
     public static testFalseSync(): boolean {
         return false;
     }
