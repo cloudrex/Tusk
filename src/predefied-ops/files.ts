@@ -9,7 +9,7 @@ export default abstract class FileOps {
 
             return true;
         }
-        catch {
+        catch (error) {
             return false;
         }
     }
@@ -33,7 +33,7 @@ export default abstract class FileOps {
             fs.unlinkSync(path);
             return true;
         }
-        catch {
+        catch (error) {
             return false;
         }
     }
@@ -72,7 +72,7 @@ export default abstract class FileOps {
 
             return true;
         }
-        catch {
+        catch (error) {
             return false;
         }
     }
@@ -97,7 +97,7 @@ export default abstract class FileOps {
 
             return true;
         }
-        catch {
+        catch (error) {
             return false;
         }
     }
@@ -122,7 +122,7 @@ export default abstract class FileOps {
 
             return true;
         }
-        catch {
+        catch (error) {
             return false;
         }
     }
@@ -133,7 +133,7 @@ export default abstract class FileOps {
 
             return true;
         }
-        catch {
+        catch (error) {
             return false;
         }
     }

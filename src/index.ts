@@ -7,7 +7,7 @@ import {Operation, ISavedOp, RunState, Action, GithubWebhookCallback, ProgressCa
 import GithubEvent from "./core/github-event";
 
 export {
-    // Core
+    // Core infrastructure.
     Operation,
     ISavedOp,
     RunState,
@@ -19,7 +19,7 @@ export {
     Coordinator,
     ICoordinator,
 
-    // Pre-defined
+    // Pre-defined operations.
     FileOps,
     GitOps,
     ScriptOps,

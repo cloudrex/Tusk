@@ -32,7 +32,7 @@ export default abstract class ScriptOps {
 
             return true;
         }
-        catch {
+        catch (error) {
             return false;
         }
     }
