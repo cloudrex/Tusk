@@ -5,6 +5,7 @@ import ScriptOps from "./predefied-ops/script";
 import TestOps from "./predefied-ops/test";
 import {Operation, ISavedOp, RunState, Action, GithubWebhookCallback, ProgressCallback} from "./core/helpers";
 import GithubEvent from "./core/github-event";
+import task from "./tasks/task";
 
 export {
     // Core infrastructure.
@@ -23,5 +24,8 @@ export {
     FileOps,
     GitOps,
     ScriptOps,
-    TestOps
+    TestOps,
+
+    // Tasks.
+    task
 };
