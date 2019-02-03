@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import {Tasks, Callback} from "./task";
 
 console.log(process.argv);

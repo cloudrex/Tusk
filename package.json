@@ -22,8 +22,8 @@
         "url": "https://github.com/cloudrex/automata/issues"
     },
     "bin": {
-        "jet"
-    }
+        "act": "dist/tasks/runner.js"
+    },
     "homepage": "https://github.com/cloudrex/automata#readme",
     "devDependencies": {
         "@types/body-parser": "^1.17.0",
