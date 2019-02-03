@@ -49,6 +49,10 @@ export default abstract class ScriptOps {
         return ScriptOps.execute("npm", ["start"], output);
     }
 
+    public static npmStartSync(output?: boolean): boolean {
+        return ScriptOps.executeSync("npm", ["start"], output);
+    }
+
     public static npmTest(output?: boolean): Promise<boolean> {
         return ScriptOps.execute("npm", ["test"], output);
     }
