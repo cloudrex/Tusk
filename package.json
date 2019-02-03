@@ -21,6 +21,9 @@
     "bugs": {
         "url": "https://github.com/cloudrex/automata/issues"
     },
+    "bin": {
+        "jet"
+    }
     "homepage": "https://github.com/cloudrex/automata#readme",
     "devDependencies": {
         "@types/body-parser": "^1.17.0",
