@@ -14,11 +14,6 @@ Task("build", "Build the project", [
         name: "build",
         description: "Build the project",
         callback: ScriptOps.npmBuild
-    },
-    {
-        name: "test",
-        description: "Run tests",
-        callback: ScriptOps.npmTest
     }
 ]);
 
@@ -33,6 +28,12 @@ Task("test", "Run tests", [
 // Run 'npm start'.
 if (taskName === undefined) {
     ScriptOps.npmStartSync(true);
+}
+// List registered tasks.
+else if (taskName === "list") {
+    for (const task of Tasks.values()) {
+        console.log(colors.cyan(task.name) + " " + colors.gray(task.desc || ""));
+    }
 }
 // Run a specific task.
 else if (Tasks.has(taskName)) {

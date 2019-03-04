@@ -16,7 +16,7 @@ export default class OpRunner {
 
         this.ops.clear();
         
-        for (const op of Tasks.get(taskName)!) {
+        for (const op of Tasks.get(taskName)!.ops) {
             this.ops.set(op.name, op);
         }
 
