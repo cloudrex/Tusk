@@ -5,7 +5,8 @@ import ScriptOps from "./PredefinedOps/Script";
 import TestOps from "./PredefinedOps/Test";
 import {Operation, ISavedOp, RunState, Action, GithubWebhookCallback, ProgressCallback} from "./Core/Helpers";
 import GithubEvent from "./Core/GithubEvent";
-import Task from "./Tasks/Task";
+import Task, {TaskCallback, ITask} from "./Tasks/Task";
+import TaskManager from "./Tasks/TaskManager";
 
 export {
     // Core infrastructure.
@@ -27,5 +28,8 @@ export {
     TestOps,
 
     // Tasks.
-    Task
+    Task,
+    TaskManager,
+    ITask,
+    TaskCallback
 };
