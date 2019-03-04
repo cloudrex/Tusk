@@ -1,7 +1,6 @@
 // Unit testing for Automata
 import {expect, assert} from "chai";
 import {Coordinator, Operation} from "../Index";
-import Task from "../Tasks/Task";
 import TaskManager from "../Tasks/TaskManager";
 
 // Test globals
