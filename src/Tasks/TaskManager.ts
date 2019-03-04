@@ -42,7 +42,12 @@ export default class TaskManager {
             // Prepare styled entities.
             const progress: string = colors.gray(`${counter}/${this.tasks.size}`);
             const name: string = colors.cyan(task.name);
-            const description: string = colors.gray(TaskManager.breakDescription(3, task.name.length, task.description || ""));
+            
+            const description: string = colors.gray(TaskManager.breakDescription(
+                (counter.toString().length + this.tasks.size.toString().length),
+                task.name.length,
+                task.description || "")
+            );
 
             // Display task info.
             console.log(`  ${progress} ${name} ${description}`);
@@ -69,7 +74,7 @@ export default class TaskManager {
     /**
      * Break up description with newlines using a threshold amount of characters.
      */
-    protected static breakDescription(tasksLength: number, nameLength: number, description: string, threshold: number = 40): string {
+    protected static breakDescription(tasksLength: number, nameLength: number, description: string, threshold: number = 45): string {
         let result: string = "";
         let counter: number = 0;
 

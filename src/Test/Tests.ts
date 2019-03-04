@@ -73,7 +73,6 @@ describe("Coordinator", () => {
     });
 });
 
-
 TaskManager.queue({
     callback: () => {},
     description: "Build the project, a really long intentional description for debugging purposes",
