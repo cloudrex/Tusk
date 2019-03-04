@@ -52,6 +52,9 @@ export class Coordinator implements ICoordinator {
         this.timeoutTime = 30_000;
     }
 
+    /**
+     * Specify the amount of times to retry each task upon failure.
+     */
     public retry(times: number): this {
         if (this.isRunning) {
             throw new Error("Cannot set retry times while running");
@@ -62,6 +65,9 @@ export class Coordinator implements ICoordinator {
         return this;
     }
 
+    /**
+     * Append an operation to the queue.
+     */
     public then(operation: Operation, regardless: boolean = false): this {
         if (typeof operation !== "function") {
             throw new Error("Expecting operation to be a function");
@@ -82,10 +88,16 @@ export class Coordinator implements ICoordinator {
         return this;
     }
 
+    /**
+     * Whether the coordinator is currently executing tasks.
+     */
     public get running(): boolean {
         return this.isRunning;
     }
 
+    /**
+     * Specify the fallback action to invoke upon failure.
+     */
     public fallback(callback: Action): this {
         if (typeof callback !== "function") {
             throw new Error("Expecting callback to be a function");
@@ -96,6 +108,9 @@ export class Coordinator implements ICoordinator {
         return this;
     }
 
+    /**
+     * Specify the maximum amount of time to await each task.
+     */
     public timeout(time: number): this {
         if (typeof time !== "number") {
             throw new Error("Expecting timeout time to be a number");
@@ -181,6 +196,9 @@ export class Coordinator implements ICoordinator {
         };
     }
 
+    /**
+     * Clear all assigned operations.
+     */
     public clear(): this {
         if (this.isRunning) {
             throw new Error("Cannot clear operations while running");
@@ -280,6 +298,9 @@ export class Coordinator implements ICoordinator {
         return port;
     }
 
+    /**
+     * Clear all assigned webhooks.
+     */
     public clearWebhooks(): this {
         for (let i: number = 0; i < this.webhooks.length; i++) {
             this.webhooks[i].close();
