@@ -24,7 +24,7 @@
         "url": "https://github.com/cloudrex/automata/issues"
     },
     "bin": {
-        "act": "dist/Tasks/Runner.js"
+        "act": "dist/Tasks/Handler.js"
     },
     "homepage": "https://github.com/cloudrex/automata#readme",
     "devDependencies": {

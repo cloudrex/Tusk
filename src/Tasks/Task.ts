@@ -1,21 +1,11 @@
-export type Callback<T = void> = (...args: any[]) => T;
+import {IOp} from "./Op";
 
-export type TaskCallback = Callback<void | boolean>;
+export const Tasks: Map<string, IOp[]> = new Map();
 
-export interface ITask {
-    readonly name: string;
-    readonly description?: string;
-    readonly callback: TaskCallback;
+export type TaskDef = (name: string, desc: string | undefined, ops: IOp[]) => void;
+
+const Task: TaskDef = (name: string, description: string | undefined, ops: IOp[]): void => {
+    Tasks.set(name, ops);
 };
-
-export const Tasks: Map<string, ITask> = new Map();
-
-const Task = (name: string, description: string | undefined, callback: TaskCallback): void => {
-    Tasks.set(name, {
-        name,
-        callback,
-        description
-    });
-}
 
 export default Task;

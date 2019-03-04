@@ -5,9 +5,10 @@ import ScriptOps from "./PredefinedOps/Script";
 import TestOps from "./PredefinedOps/Test";
 import {Operation, ISavedOp, RunState, Action, GithubWebhookCallback, ProgressCallback} from "./Core/Helpers";
 import GithubEvent from "./Core/GithubEvent";
-import Task, {TaskCallback, ITask} from "./Tasks/Task";
-import TaskManager from "./Tasks/TaskManager";
+import {OpCallback, IOp} from "./Tasks/Op";
+import OpRunner from "./Tasks/OpRunner";
 import SpaceFactory from "./Tasks/SpaceFactory";
+import Task from "./Tasks/Task";
 
 export {
     // Core infrastructure.
@@ -30,9 +31,9 @@ export {
 
     // Tasks.
     Task,
-    TaskManager,
-    ITask,
-    TaskCallback,
+    OpRunner,
+    IOp,
+    OpCallback,
 
     // Other.
     SpaceFactory

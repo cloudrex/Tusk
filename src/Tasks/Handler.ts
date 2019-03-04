@@ -1,20 +1,34 @@
 #!/usr/bin/env node
 
 import colors from "colors";
-import Task, {Tasks, ITask} from "./Task";
 import ScriptOps from "../PredefinedOps/Script";
+import Task, {Tasks} from "./Task";
+import OpRunner from "./OpRunner";
 
 const args: string[] = process.argv.slice(2);
 const taskName: string | undefined = args[0];
 
 // Register default tasks.
-Task("build", "Build the project", () => {
-    ScriptOps.npmBuildSync(true);
-});
+Task("build", "Build the project", [
+    {
+        name: "build",
+        description: "Build the project",
+        callback: ScriptOps.npmBuild
+    },
+    {
+        name: "test",
+        description: "Run tests",
+        callback: ScriptOps.npmTest
+    }
+]);
 
-Task("test", "Run tests", () => {
-    ScriptOps.npmTestSync(true);
-});
+Task("test", "Run tests", [
+    {
+        name: "test",
+        description: "Run tests",
+        callback: ScriptOps.npmTest
+    }
+]);
 
 // Run 'npm start'.
 if (taskName === undefined) {
@@ -22,10 +36,8 @@ if (taskName === undefined) {
 }
 // Run a specific task.
 else if (Tasks.has(taskName)) {
-    const task: ITask = Tasks.get(taskName)!;
-
-    console.log(colors.gray(`0/${Tasks.size} ${colors.cyan(taskName)} ${colors.gray(task.description || "")}`));
-    task.callback(args.slice(1));
+    OpRunner.prepare(taskName);
+    OpRunner.run();
 }
 // Otherwise, task does not exist.
 else {
