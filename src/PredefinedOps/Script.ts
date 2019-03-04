@@ -1,7 +1,7 @@
 import {exec, execSync} from "child_process";
 
 export default abstract class ScriptOps {
-    public static execute(base: string, params: string[], output: boolean = false): Promise<boolean> {
+    public static execute(base: string, params?: string[], output: boolean = false): Promise<boolean> {
         return new Promise((resolve) => {
             const joinParams: string = params !== undefined && Array.isArray(params) && params.length > 0 ? params.join(" ") : "";
 
@@ -75,6 +75,22 @@ export default abstract class ScriptOps {
 
     public static npmInstallSync(output?: boolean): boolean {
         return ScriptOps.executeSync("npm", ["install"], output);
+    }
+
+    public static npx(name: string, params?: string[], output?: boolean): Promise<boolean> {
+        return ScriptOps.execute("npx", [name, ...(params || [])], output);
+    }
+
+    public static npxSync(name: string, params?: string[], output?: boolean): boolean {
+        return ScriptOps.executeSync("npx", [name, ...(params || [])], output);
+    }
+
+    public static publish(output?: boolean): Promise<boolean> {
+        return ScriptOps.execute("npx", ["publish"], output);
+    }
+
+    public static publishSync(output?: boolean): boolean {
+        return ScriptOps.executeSync("npm", ["publish"], output);
     }
 
     public static typescriptBuild(output?: boolean): Promise<boolean> {
