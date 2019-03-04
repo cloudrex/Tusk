@@ -1,7 +1,7 @@
 {
     "name": "@atlas/automata",
     "version": "1.2.3",
-    "description": "Automation and task management library",
+    "description": "Automation library and task runner",
     "main": "dist/Index.js",
     "scripts": {
         "build": "tsc",

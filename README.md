@@ -1,6 +1,6 @@
 ## Automata
 
-Get dandy with an easy-to-use automated workflow library!
+Get dandy with an easy-to-use workflow automation library + task runner!
 
 **Installation:** `npm install --save @atlas/automata`
 
