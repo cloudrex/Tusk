@@ -2,12 +2,12 @@
     "name": "@atlas/automata",
     "version": "1.1.1",
     "description": "Automation library",
-    "main": "dist/index.js",
+    "main": "dist/Index.js",
     "scripts": {
         "build": "tsc",
         "prepare": "npm run build",
         "prepublish": "npm test",
-        "test": "npm run build && mocha dist/test/tests.js"
+        "test": "npm run build && mocha dist/Test/Tests.js"
     },
     "repository": {
         "type": "git",
@@ -22,7 +22,7 @@
         "url": "https://github.com/cloudrex/automata/issues"
     },
     "bin": {
-        "act": "dist/tasks/runner.js"
+        "act": "dist/Tasks/Runner.js"
     },
     "homepage": "https://github.com/cloudrex/automata#readme",
     "devDependencies": {

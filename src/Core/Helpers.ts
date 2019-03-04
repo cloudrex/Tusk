@@ -1,4 +1,4 @@
-import GithubEvent from "./github-event";
+import GithubEvent from "./GithubEvent";
 
 export type PromiseOr<T> = Promise<T> | T;
 

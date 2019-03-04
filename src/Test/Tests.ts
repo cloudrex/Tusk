@@ -1,6 +1,6 @@
 // Unit testing for Automata
 import {expect, assert} from "chai";
-import {Coordinator, Operation} from "..";
+import {Coordinator, Operation} from "../Index";
 
 // Test globals
 const globalAny: any = global;

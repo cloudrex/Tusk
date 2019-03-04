@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import {Tasks, Callback} from "./task";
-import ScriptOps from "../predefied-ops/script";
+import {Tasks, Callback} from "./Task";
+import ScriptOps from "../PredefinedOps/Script";
 
 const args: string[] = process.argv.slice(2);
 const taskName: string | undefined = args[0];
