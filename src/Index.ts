@@ -7,6 +7,7 @@ import {Operation, ISavedOp, RunState, Action, GithubWebhookCallback, ProgressCa
 import GithubEvent from "./Core/GithubEvent";
 import Task, {TaskCallback, ITask} from "./Tasks/Task";
 import TaskManager from "./Tasks/TaskManager";
+import SpaceFactory from "./Tasks/SpaceFactory";
 
 export {
     // Core infrastructure.
@@ -31,5 +32,8 @@ export {
     Task,
     TaskManager,
     ITask,
-    TaskCallback
+    TaskCallback,
+
+    // Other.
+    SpaceFactory
 };

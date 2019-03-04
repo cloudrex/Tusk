@@ -1,4 +1,4 @@
-export default class SpaceMachine {
+export default class SpaceFactory {
     public static make(length: number, char: string = " "): string {
         let result: string = "";
 

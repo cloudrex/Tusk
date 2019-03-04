@@ -1,6 +1,6 @@
 import {ITask} from "./Task";
 import colors from "colors";
-import SpaceMachine from "./SpaceMachine";
+import SpaceFactory from "./SpaceFactory";
 
 export default class TaskManager {
     protected static readonly tasks: Map<string, ITask> = new Map();
@@ -10,6 +10,13 @@ export default class TaskManager {
      */
     public static queue(task: ITask): void {
         TaskManager.tasks.set(task.name, task);
+    }
+
+    /**
+     * Remove a registered task from the queue.
+     */
+    public static remove(name: string): boolean {
+        return TaskManager.tasks.delete(name);
     }
 
     /**
@@ -81,7 +88,7 @@ export default class TaskManager {
         for (const char of description) {
             if (counter >= threshold) {
                 // '+ 4' corresponds to 2 initial spaces and the counter-name-desc (3) separation spaces.
-                result += "\n" + SpaceMachine.make(nameLength + tasksLength + 4);
+                result += "\n" + SpaceFactory.make(nameLength + tasksLength + 4);
                 counter = 0;
             }
             else {
