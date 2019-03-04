@@ -1,7 +1,6 @@
 // Unit testing for Automata
 import {expect, assert} from "chai";
 import {Coordinator, Operation} from "../Index";
-import TaskManager from "../Tasks/TaskManager";
 
 // Test globals
 const globalAny: any = global;
@@ -72,17 +71,3 @@ describe("Coordinator", () => {
         });
     });
 });
-
-TaskManager.queue({
-    callback: () => {},
-    description: "Build the project, a really long intentional description for debugging purposes",
-    name: "build"
-});
-
-TaskManager.queue({
-    callback: () => {},
-    description: "Test the project",
-    name: "test"
-})
-
-TaskManager.run();

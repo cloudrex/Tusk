@@ -57,7 +57,7 @@ export default class TaskManager {
             );
 
             // Display task info.
-            console.log(`  ${progress} ${name} ${description}`);
+            console.log(`  ${progress} ${name} ${description}\n`);
 
             // Execute the task and capture the result.
             const result: undefined | boolean = await task.callback() as undefined | boolean;
@@ -70,12 +70,12 @@ export default class TaskManager {
             }
 
             // Otherwise, the task failed.
-            console.log(colors.red(`\n  Task '${task.name}' failed\n`));
+            console.log(colors.red(`  Task '${task.name}' failed\n`));
 
             return;
         }
 
-        console.log(colors.green(`\n  Process completed successfully\n`));
+        console.log(colors.green(`  Process completed successfully\n`));
     }
 
     /**
