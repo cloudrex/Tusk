@@ -14,7 +14,9 @@
         "url": "git+https://github.com/cloudrex/automata.git"
     },
     "keywords": [
-        "automation"
+        "automation",
+        "task-runner",
+        "tasks"
     ],
     "author": "CloudRex <cloudrex@outlook.com>",
     "license": "MIT",
