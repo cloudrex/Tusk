@@ -42,9 +42,9 @@ export default class TaskManager {
             // Prepare styled entities.
             const progress: string = colors.gray(`${counter}/${this.tasks.size}`);
             const name: string = colors.cyan(task.name);
-            
+
             const description: string = colors.gray(TaskManager.breakDescription(
-                (counter.toString().length + this.tasks.size.toString().length),
+                (counter.toString().length + this.tasks.size.toString().length + 1),
                 task.name.length,
                 task.description || "")
             );
@@ -80,7 +80,7 @@ export default class TaskManager {
 
         for (const char of description) {
             if (counter >= threshold) {
-                // '+ 4' corresponds to 2 initial spaces, name-desc separation space and '/' tasks character.
+                // '+ 4' corresponds to 2 initial spaces and the counter-name-desc (3) separation spaces.
                 result += "\n" + SpaceMachine.make(nameLength + tasksLength + 4);
                 counter = 0;
             }
