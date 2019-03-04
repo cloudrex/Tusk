@@ -4,9 +4,16 @@ import colors from "colors";
 import ScriptOps from "../PredefinedOps/Script";
 import Task, {Tasks} from "./Task";
 import OpRunner from "./OpRunner";
+import fs from "fs";
+import path from "path";
 
-const args: string[] = process.argv.slice(2);
-const taskName: string | undefined = args[0];
+const actionFileName: string = "ActionFile.js";
+
+// Ensure ActionFile exists.
+if (!fs.existsSync(actionFileName)) {
+    console.log(colors.red("ActionFile.js not found"));
+    process.exit(1);
+}
 
 // Register default tasks.
 Task("build", "Build the project", [
@@ -24,6 +31,13 @@ Task("test", "Run tests", [
         callback: ScriptOps.npmTest
     }
 ]);
+
+// Import ActionFile.
+require(path.resolve(path.join(".", actionFileName)));
+
+// Begin processing arguments.
+const args: string[] = process.argv.slice(2);
+const taskName: string | undefined = args[0];
 
 // Run 'npm start'.
 if (taskName === undefined) {
