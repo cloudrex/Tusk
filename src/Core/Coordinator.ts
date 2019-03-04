@@ -27,7 +27,7 @@ export interface ICoordinator {
     readonly running: boolean;
 }
 
-// TODO: Implement retry functionality
+// TODO: Implement retry functionality.
 export class Coordinator implements ICoordinator {
     public static webhookPort: number = 52671;
 
@@ -124,7 +124,7 @@ export class Coordinator implements ICoordinator {
         return this;
     }
 
-    // TOOD: Better report of why failed/completed
+    // TOOD: Better report of why failed/completed.
     public async run(callback?: ProgressCallback, clear: boolean = true): Promise<ITaskResult> {
         if (callback !== undefined && typeof callback !== "function") {
             throw new Error("Expecting callback to be a function");
@@ -168,7 +168,7 @@ export class Coordinator implements ICoordinator {
                     fallback();
                 }
 
-                // TODO: Should return final fallback result (if any fallback was set)
+                // TODO: Should return final fallback result (if any fallback was set).
                 return {
                     ...pending,
                     state: RunState.Failed,
@@ -177,7 +177,7 @@ export class Coordinator implements ICoordinator {
                 };
             }
 
-            // TODO: Read-only hotfix
+            // TODO: Read-only hotfix.
             (pending.time as any) += result.time;
             completed++;
         }
@@ -210,12 +210,12 @@ export class Coordinator implements ICoordinator {
         return this;
     }
 
-    // TODO: Repeated usage of both functions's functionality, .webhook() and .githubWebhook(); Use a generic function
+    // TODO: Repeated usage of both functions's functionality, .webhook() and .githubWebhook(); Use a generic function.
     /**
      * Create a webhook server. Content type must be set to application/json only.
-     * @param {GithubWebhookCallback} callback The callback to invoke upon receiving a valid and authorized request
-     * @param {string | undefined} secret A key that must be sent as authorization
-     * @param {number} port The port that the webhook server will listen on
+     * @param {GithubWebhookCallback} callback The callback to invoke upon receiving a valid and authorized request.
+     * @param {string | undefined} secret A key that must be sent as authorization.
+     * @param {number} port The port that the webhook server will listen on.
      */
     public webhook<T = object>(callback: WebhookCallback<T>, secret?: string, port: number = Coordinator.webhookPort++): number {
         // TODO: CRITICAL: Express throws errors (internal errors, 500) into the response stream!
@@ -251,13 +251,13 @@ export class Coordinator implements ICoordinator {
         return port;
     }
 
-    // TODO: Port may be constant, meaning that it does not ++ on each function call. Same for above. (.webhook())
+    // TODO: Port may be constant, meaning that it does not ++ on each function call. Same for above. (.webhook()).
     /**
      * Create a webhook server for GitHub events. Content type must be set to application/json only.
-     * @param {string} secret The secret which must be sent as authorization
-     * @param {GithubWebhookCallback} callback The callback to invoke upon valid request with authorization
-     * @param {number} port The port that the webhook server will listen on
-     * @return {number} The port that the webhook will listen on
+     * @param {string} secret The secret which must be sent as authorization.
+     * @param {GithubWebhookCallback} callback The callback to invoke upon valid request with authorization.
+     * @param {number} port The port that the webhook server will listen on.
+     * @return {number} The port that the webhook will listen on.
      */
     public githubWebhook<T = object>(secret: string, callback: GithubWebhookCallback<T>, port: number = Coordinator.webhookPort++): number {
         // TODO: CRITICAL: Express throws errors (internal errors, 500) into the response stream!
@@ -277,7 +277,7 @@ export class Coordinator implements ICoordinator {
             else {
                 const shasum = crypto.createHmac("sha1", secret);
 
-                // TODO: Inefficient, express should already contain a property like this
+                // TODO: Inefficient, express should already contain a property like this.
                 shasum.update(JSON.stringify(req.body));
 
                 const secretHash: string = shasum.digest("hex");
