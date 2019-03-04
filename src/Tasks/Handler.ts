@@ -59,5 +59,5 @@ else if (Tasks.has(taskName)) {
 }
 // Otherwise, task does not exist.
 else {
-    console.log("That task does not exist");
+    console.log(colors.red("That task does not exist"));
 }
