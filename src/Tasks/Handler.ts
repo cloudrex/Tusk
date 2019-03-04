@@ -32,6 +32,9 @@ Task("test", "Run tests", [
     }
 ]);
 
+// Inject globals.
+(global as any).Task = Task;
+
 // Import ActionFile.
 require(path.resolve(path.join(".", actionFileName)));
 
