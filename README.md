@@ -1,33 +1,73 @@
-## Automata
+### Tusk
 
 Get dandy with an easy-to-use workflow automation library + task runner!
 
-**Installation:** `npm install --save @atlas/automata`
+### Installation
 
-## Usage
+If you're planning to use the workflow automation library:
 
-Automata comes in handy for pretty much any requirement for automation. Below are some examples which are designed help you get started using this library.
+```bash
+$ npm install --save tusk
+```
+
+If you're planning to use the CLI + task runner:
+
+```bash
+$ npm install --global tusk
+```
+
+### Usage
+
+Tusk comes in handy for pretty much any requirement for automation. Below are some examples which are designed help you get started using this library.
 
 Although most examples use pre-defined operations, the real magic to using this library is when you make self-contained operations and implement them, allowing for a dynamic and flexible usage of tasks.
 
-### TypeScript project build script:
+#### TypeScript project build script
+
 ```js
-const automata = require("@atlas/automata");
+const tusk = require("tusk");
 
 const buildDir = "./dist";
-const coordinator = new automata.Coordinator();
+const coordinator = new tusk.Coordinator();
 
 async function build() {
     const result = await coordinator
-        .then(() => automata.FileSystemOperations.forceRemove(buildDir))
-        .then(() => automata.ScriptOperations.execute("tsc"))
+        .then(() => tusk.FileSystemOperations.forceRemove(buildDir))
+        .then(() => tusk.ScriptOperations.execute("tsc"))
 
         .run();
 
-    const state = result.state === automata.CoordinatorState.OK ? "OK" : "FAIL";
+    const state = result.state === tusk.CoordinatorState.OK ? "OK" : "FAIL";
 
     console.log(`Build completed with state '${state}'`);
 }
 
 build();
+```
+
+#### Task runner
+
+Define your task(s) in the special ``TuskFile.js``:
+
+```js
+const tusk = require("tusk");
+
+Task("build", "Build the project", [{
+    // Task operation(s) (steps).
+    name: "build",
+    description: "Build the project",
+    callback: tusk.ScriptOpts.npmBuild
+}]);
+```
+
+List available tasks:
+
+```bash
+$ tusk list
+```
+
+Run a task:
+
+```bash
+$ tusk build
 ```

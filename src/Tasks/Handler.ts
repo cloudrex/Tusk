@@ -7,11 +7,11 @@ import OpRunner from "./OpRunner";
 import fs from "fs";
 import path from "path";
 
-const actionFileName: string = "ActionFile.js";
+const actionFileName: string = "TuskFile.js";
 
 // Ensure ActionFile exists.
 if (!fs.existsSync(actionFileName)) {
-    console.log(colors.red("ActionFile.js not found"));
+    console.log(colors.red("ActionFile.js not found (case-sensitive)"));
     process.exit(1);
 }
 
@@ -21,14 +21,6 @@ Task("build", "Build the project", [
         name: "build",
         description: "Build the project",
         callback: ScriptOps.npmBuild
-    }
-]);
-
-Task("test", "Run tests", [
-    {
-        name: "test",
-        description: "Run tests",
-        callback: ScriptOps.npmTest
     }
 ]);
 

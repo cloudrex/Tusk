@@ -1,4 +1,3 @@
-// Unit testing for Automata
 import {expect, assert} from "chai";
 import {Coordinator, Operation} from "../Index";
 

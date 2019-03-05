@@ -1,5 +1,5 @@
 {
-    "name": "@atlas/automata",
+    "name": "tusk",
     "version": "1.2.3",
     "description": "Automation library and task runner",
     "main": "dist/Index.js",
@@ -11,7 +11,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/cloudrex/automata.git"
+        "url": "git+https://github.com/cloudrex/Tusk.git"
     },
     "keywords": [
         "automation",
@@ -21,12 +21,12 @@
     "author": "CloudRex <cloudrex@outlook.com>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/cloudrex/automata/issues"
+        "url": "https://github.com/cloudrex/Tusk/issues"
     },
     "bin": {
-        "act": "dist/Tasks/Handler.js"
+        "tusk": "dist/Tasks/Handler.js"
     },
-    "homepage": "https://github.com/cloudrex/automata#readme",
+    "homepage": "https://github.com/cloudrex/Tusk#readme",
     "devDependencies": {
         "@types/body-parser": "^1.17.0",
         "@types/chai": "^4.1.7",
