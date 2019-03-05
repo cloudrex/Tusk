@@ -7,11 +7,11 @@ import OpRunner from "./OpRunner";
 import fs from "fs";
 import path from "path";
 
-const actionFileName: string = "TuskFile.js";
+const tuskFileName: string = "TuskFile.js";
 
 // Ensure ActionFile exists.
-if (!fs.existsSync(actionFileName)) {
-    console.log(colors.red("ActionFile.js not found (case-sensitive)"));
+if (!fs.existsSync(tuskFileName)) {
+    console.log(colors.red(`${tuskFileName} not found (case-sensitive)`));
     process.exit(1);
 }
 
@@ -28,7 +28,7 @@ Task("build", "Build the project", [
 (global as any).Task = Task;
 
 // Import ActionFile.
-require(path.resolve(path.join(".", actionFileName)));
+require(path.resolve(path.join(".", tuskFileName)));
 
 // Begin processing arguments.
 const args: string[] = process.argv.slice(2);
