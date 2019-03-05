@@ -37,37 +37,8 @@ async function build() {
 
         .run();
 
-    const state = result.state === tusk.CoordinatorState.OK ? "OK" : "FAIL";
-
-    console.log(`Build completed with state '${state}'`);
+    console.log("Build completed with state %s", result.state === tusk.RunState.OK ? "OK" : "FAIL");
 }
 
 build();
-```
-
-#### Task runner
-
-Define your task(s) in the special ``TuskFile.js``:
-
-```js
-const tusk = require("tusk");
-
-Task("build", "Build the project", [{
-    // Task operation(s) (steps).
-    name: "build",
-    description: "Build the project",
-    callback: tusk.ScriptOps.npmBuild
-}]);
-```
-
-List available tasks:
-
-```bash
-$ tusk list
-```
-
-Run a task:
-
-```bash
-$ tusk build
 ```
