@@ -1,6 +1,6 @@
 {
     "name": "tusk",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "description": "Automation library",
     "main": "dist/Index.js",
     "scripts": {
