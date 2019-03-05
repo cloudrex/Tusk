@@ -23,9 +23,6 @@
     "bugs": {
         "url": "https://github.com/cloudrex/Tusk/issues"
     },
-    "bin": {
-        "tusk": "dist/Tasks/Handler.js"
-    },
     "homepage": "https://github.com/cloudrex/Tusk#readme",
     "devDependencies": {
         "@types/body-parser": "^1.17.0",
