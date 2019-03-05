@@ -1,7 +1,7 @@
 {
     "name": "tusk",
     "version": "1.2.3",
-    "description": "Automation library and task runner",
+    "description": "Automation library",
     "main": "dist/Index.js",
     "scripts": {
         "build": "tsc",

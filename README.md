@@ -1,6 +1,6 @@
 ### Tusk
 
-Get dandy with an easy-to-use workflow automation library + task runner!
+Get dandy with an easy-to-use workflow automation library!
 
 ### Installation
 
@@ -10,10 +10,10 @@ If you're planning to use the workflow automation library:
 $ npm install --save tusk
 ```
 
-If you're planning to use the CLI + task runner:
+If you're planning to use the CLI task runner:
 
 ```bash
-$ npm install --global tusk
+$ npm install --global tusk-cli
 ```
 
 ### Usage
