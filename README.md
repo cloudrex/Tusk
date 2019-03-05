@@ -10,7 +10,7 @@ If you're planning to use the workflow automation library:
 $ npm install --save tusk
 ```
 
-If you're planning to use the CLI task runner:
+If you're planning to use the [CLI task runner](https://npmjs.com/package/tusk-cli):
 
 ```bash
 $ npm install --global tusk-cli
