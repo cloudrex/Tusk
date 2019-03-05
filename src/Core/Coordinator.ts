@@ -16,7 +16,7 @@ export interface ITaskResult {
 
 export interface ICoordinator {
     retry(times: number): this;
-    then(operation: Operation, regardless: boolean): this;
+    queue(operation: Operation, regardless: boolean): this;
     fallback(callback: Action): this;
     timeout(time: number): this;
     run(): PromiseOr<ITaskResult>;
@@ -68,7 +68,7 @@ export class Coordinator implements ICoordinator {
     /**
      * Append an operation to the queue.
      */
-    public then(operation: Operation, regardless: boolean = false): this {
+    public queue(operation: Operation, regardless: boolean = false): this {
         if (typeof operation !== "function") {
             throw new Error("Expecting operation to be a function");
         }

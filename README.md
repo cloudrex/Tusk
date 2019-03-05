@@ -32,8 +32,8 @@ const coordinator = new tusk.Coordinator();
 
 async function build() {
     const result = await coordinator
-        .then(() => tusk.FileOps.forceRemove(buildDir))
-        .then(() => tusk.ScriptOps.execute("tsc"))
+        .queue(() => tusk.FileOps.forceRemove(buildDir))
+        .queue(() => tusk.ScriptOps.execute("tsc"))
 
         .run();
 

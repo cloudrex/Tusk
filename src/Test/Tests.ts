@@ -24,29 +24,29 @@ describe("Coordinator", () => {
 
     describe("then()", () => {
         it("should queue operations", () => {
-            coordinator.then(() => console.log("test"));
+            coordinator.queue(() => console.log("test"));
     
             expect((coordinator as any).operations).to.be.an("array").and.to.have.length(1);
         });
 
         it("should throw on invalid parameters", () => {
             // Operation parameter
-            assert.throws(() => coordinator.then(undefined as any));
-            assert.throws(() => coordinator.then(null as any));
-            assert.throws(() => coordinator.then(1 as any));
-            assert.throws(() => coordinator.then(0 as any));
-            assert.throws(() => coordinator.then(true as any));
-            assert.throws(() => coordinator.then(false as any));
-            assert.throws(() => coordinator.then([] as any));
-            assert.throws(() => coordinator.then({} as any));
+            assert.throws(() => coordinator.queue(undefined as any));
+            assert.throws(() => coordinator.queue(null as any));
+            assert.throws(() => coordinator.queue(1 as any));
+            assert.throws(() => coordinator.queue(0 as any));
+            assert.throws(() => coordinator.queue(true as any));
+            assert.throws(() => coordinator.queue(false as any));
+            assert.throws(() => coordinator.queue([] as any));
+            assert.throws(() => coordinator.queue({} as any));
 
             // Regardless parameter
-            assert.throws(() => coordinator.then(action, null as any));
-            assert.throws(() => coordinator.then(action, 1 as any));
-            assert.throws(() => coordinator.then(action, 0 as any));
-            assert.throws(() => coordinator.then(action, [] as any));
-            assert.throws(() => coordinator.then(action, {} as any));
-            assert.throws(() => coordinator.then(action, action as any));
+            assert.throws(() => coordinator.queue(action, null as any));
+            assert.throws(() => coordinator.queue(action, 1 as any));
+            assert.throws(() => coordinator.queue(action, 0 as any));
+            assert.throws(() => coordinator.queue(action, [] as any));
+            assert.throws(() => coordinator.queue(action, {} as any));
+            assert.throws(() => coordinator.queue(action, action as any));
         });
     });
 
