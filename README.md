@@ -32,8 +32,8 @@ const coordinator = new tusk.Coordinator();
 
 async function build() {
     const result = await coordinator
-        .then(() => tusk.FileSystemOperations.forceRemove(buildDir))
-        .then(() => tusk.ScriptOperations.execute("tsc"))
+        .then(() => tusk.FileOps.forceRemove(buildDir))
+        .then(() => tusk.ScriptOps.execute("tsc"))
 
         .run();
 
@@ -56,7 +56,7 @@ Task("build", "Build the project", [{
     // Task operation(s) (steps).
     name: "build",
     description: "Build the project",
-    callback: tusk.ScriptOpts.npmBuild
+    callback: tusk.ScriptOps.npmBuild
 }]);
 ```
 
