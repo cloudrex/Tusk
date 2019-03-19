@@ -1,5 +1,5 @@
 import {performance} from "perf_hooks";
-import {PromiseOr, ISavedOp} from "./Helpers";
+import {PromiseOr, ISavedOp} from "./helpers";
 
 export interface IOperationResult {
     readonly time: number;

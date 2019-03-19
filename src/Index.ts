@@ -1,10 +1,10 @@
-import {ITaskResult, Coordinator, ICoordinator} from "./Core/Coordinator";
+import {ITaskResult, Coordinator, ICoordinator} from "./core/coordinator";
 import FileOps from "./PredefinedOps/Files";
 import GitOps from "./PredefinedOps/Git";
 import ScriptOps from "./PredefinedOps/Script";
 import TestOps from "./PredefinedOps/Test";
-import {Operation, ISavedOp, RunState, Action, GithubWebhookCallback, ProgressCallback} from "./Core/Helpers";
-import GithubEvent from "./Core/GithubEvent";
+import {Operation, ISavedOp, RunState, Action, GithubWebhookCallback, ProgressCallback} from "./core/helpers";
+import GithubEvent from "./core/githubEvent";
 
 export {
     // Core infrastructure.
