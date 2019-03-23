@@ -1,5 +1,6 @@
 import {expect, assert} from "chai";
-import {Coordinator, Operation} from "..";
+import {Operation} from "../core/helpers";
+import {Coordinator} from "../core/coordinator";
 
 // Test globals.
 const globalAny: any = global;
