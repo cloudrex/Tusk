@@ -1,7 +1,7 @@
 import {expect, assert} from "chai";
 import {Coordinator, Operation} from "..";
 
-// Test globals
+// Test globals.
 const globalAny: any = global;
 const describe: any = globalAny.describe;
 const it: any = globalAny.it;
@@ -12,7 +12,7 @@ const coordinator: Coordinator = new Coordinator();
 describe("Coordinator", () => {
     it("should have no initial operations", () => {
         expect((coordinator as any).operations).to.be.an("array").and.to.have.length(0);
-    });
+
 
     it("should have no initial webhooks", () => {
         expect((coordinator as any).webhooks).to.be.an("array").and.to.have.length(0);
@@ -25,12 +25,12 @@ describe("Coordinator", () => {
     describe("then()", () => {
         it("should queue operations", () => {
             coordinator.queue(() => console.log("test"));
-    
+
             expect((coordinator as any).operations).to.be.an("array").and.to.have.length(1);
         });
 
         it("should throw on invalid parameters", () => {
-            // Operation parameter
+            // Operation parameter.
             assert.throws(() => coordinator.queue(undefined as any));
             assert.throws(() => coordinator.queue(null as any));
             assert.throws(() => coordinator.queue(1 as any));
@@ -40,7 +40,7 @@ describe("Coordinator", () => {
             assert.throws(() => coordinator.queue([] as any));
             assert.throws(() => coordinator.queue({} as any));
 
-            // Regardless parameter
+            // Regardless parameter.
             assert.throws(() => coordinator.queue(action, null as any));
             assert.throws(() => coordinator.queue(action, 1 as any));
             assert.throws(() => coordinator.queue(action, 0 as any));

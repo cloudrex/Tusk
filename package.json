@@ -2,16 +2,16 @@
     "name": "tusk",
     "version": "1.2.4",
     "description": "Automation library",
-    "main": "dist/Index.js",
+    "main": "dist/index.js",
     "scripts": {
         "build": "tsc",
         "prepare": "npm run build",
         "prepublish": "npm test",
-        "test": "npm run build && mocha dist/Test/Tests.js"
+        "test": "npm run build && mocha dist/test/tests.js"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/cloudrex/Tusk.git"
+        "url": "git+https://github.com/cloudrex/tusk.git"
     },
     "keywords": [
         "automation",
@@ -21,9 +21,9 @@
     "author": "CloudRex <cloudrex@outlook.com>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/cloudrex/Tusk/issues"
+        "url": "https://github.com/cloudrex/tusk/issues"
     },
-    "homepage": "https://github.com/cloudrex/Tusk#readme",
+    "homepage": "https://github.com/cloudrex/tusk#readme",
     "devDependencies": {
         "@types/body-parser": "^1.17.0",
         "@types/chai": "^4.1.7",
