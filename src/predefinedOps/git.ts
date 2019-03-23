@@ -1,4 +1,4 @@
-import ScriptOps from "./Script";
+import ScriptOps from "./script";
 
 export default abstract class GitOps {
     public static pull(): Promise<boolean> {

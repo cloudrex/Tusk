@@ -2,9 +2,9 @@ import express from "express";
 import bodyParser = require("body-parser");
 import crypto from "crypto";
 import {Server} from "http";
-import TaskRunner, {IOperationResult} from "./TaskRunner";
-import GithubEvent from "./GithubEvent";
-import {WebhookCallback, Action, Operation, PromiseOr, ProgressCallback, GithubWebhookCallback, RunState, ISavedOp} from "./Helpers";
+import TaskRunner, {IOperationResult} from "./taskRunner";
+import GithubEvent from "./githubEvent";
+import {WebhookCallback, Action, Operation, PromiseOr, ProgressCallback, GithubWebhookCallback, RunState, ISavedOp} from "./helpers";
 
 export interface ITaskResult {
     readonly state: RunState;
