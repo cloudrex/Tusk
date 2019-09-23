@@ -3,6 +3,7 @@ import {PromiseOr, ISavedOp} from "./Helpers";
 
 export interface IOperationResult {
     readonly time: number;
+
     readonly value: boolean | void;
 }
 

@@ -1,4 +1,4 @@
-import {ITaskResult, Coordinator, ICoordinator} from "./Core/Coordinator";
+import {ITaskResult, Coordinator, ICoordinator} from "./core/coordinator";
 import FileOps from "./PredefinedOps/Files";
 import GitOps from "./PredefinedOps/Git";
 import ScriptOps from "./PredefinedOps/Script";

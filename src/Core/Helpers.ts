@@ -6,6 +6,7 @@ export type Operation = () => PromiseOr<boolean> | PromiseOr<void>;
 
 export interface ISavedOp {
     readonly operation: Operation;
+
     readonly regardless: boolean;
 }
 
