@@ -8,20 +8,31 @@ import {WebhookCallback, Action, Operation, PromiseOr, ProgressCallback, GithubW
 
 export interface ITaskResult {
     readonly state: RunState;
+
     readonly operations: number;
+
     readonly operationsCompleted: number;
+
     readonly time: number;
+
     readonly averageTime: number;
 }
 
 export interface ICoordinator {
     retry(times: number): this;
-    queue(operation: Operation, regardless: boolean): this;
+
+    then(operation: Operation, regardless: boolean): this;
+
     fallback(callback: Action): this;
+
     timeout(time: number): this;
+
     run(): PromiseOr<ITaskResult>;
+
     clear(): this;
+
     webhook<T extends object>(callback: WebhookCallback<T>, secret?: string, port?: number): number;
+    
     clearWebhooks(): this;
 
     readonly running: boolean;
@@ -32,10 +43,15 @@ export class Coordinator implements ICoordinator {
     public static webhookPort: number = 52671;
 
     protected operations: ISavedOp[];
+
     protected isRunning: boolean;
+
     protected webhooks: Server[];
+
     protected retryTimes: number;
+    
     protected fallbackCallback?: Action;
+
     protected timeoutTime: number;
 
     public constructor(...operations: Operation[]) {

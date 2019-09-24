@@ -1,6 +1,4 @@
 import {expect, assert} from "chai";
-import {Operation} from "../core/helpers";
-import {Coordinator} from "../core/coordinator";
 
 // Test globals.
 const globalAny: any = global;
@@ -21,7 +19,7 @@ describe("Coordinator", () => {
 
     it("should not be running", () => {
         expect(coordinator.running).to.be.a("boolean").and.to.equal(false);
-    });
+});
 
     describe("then()", () => {
         it("should queue operations", () => {
